@@ -1,7 +1,9 @@
 TO DO LIST:
 
-..* Josh     - Collectables, doors, camera, level (I have some rebust systems, just need to update them more or less)
-..* Harry   - Combat\n
-..* Sam     - Movement\n
-..* Tom    - Splines\n
-..* Simon - Level
+| Person        | Tasks         | Completed  |
+| ------------- |:-------------:| -----:|
+| Josh      | Collectables, doors, camera, level | N |
+| Harry      | Combat      |   N |
+| Sam | Movement      |    N |
+| Tom | Splines      |    N |
+| Simon | Level      |    N |
