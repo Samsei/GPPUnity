@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CamFollowNormal : MonoBehaviour
 {
-    [SerializeField] private float clamp_angle = 80.0f;
+    [SerializeField] private float clamp_angle_negative = 80.0f;
+    [SerializeField] private float clamp_angle_positive = 50.0f;
     [SerializeField] private float sens = 150.0f;
 
     private float mouseX;
@@ -58,7 +59,7 @@ public class CamFollowNormal : MonoBehaviour
             rotY = 0.0f;
         }
 
-        rotX = Mathf.Clamp(rotX, -clamp_angle, clamp_angle);
+        rotX = Mathf.Clamp(rotX, -clamp_angle_negative, clamp_angle_positive);
 
         Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
         transform.rotation = localRotation;
