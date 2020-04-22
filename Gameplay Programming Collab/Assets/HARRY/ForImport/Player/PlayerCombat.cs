@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +16,12 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTimeBomb = 0f;
     float nextAttackTimeSpikes = 0f;
     public float power = 1000;
+
+    [Header("Respawn")]
+    GameObject player;
+    CharacterController cc;
+    public Vector3 new_transform;
+    public Vector3 new_rotation;
 
     [Header("Effects")]
     public ParticleSystem hitEffect;
@@ -47,10 +53,13 @@ public class PlayerCombat : MonoBehaviour
     //Spike text
     public Text spikeText;
     float spikeTime;
-    
+
     private void Start()
     {
         currentHealth = maxHealth;
+        player = GameObject.Find("Playable_Character");
+        cc = player.GetComponent<CharacterController>();
+        respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint").transform;
     }
 
     private void Update()
@@ -59,23 +68,25 @@ public class PlayerCombat : MonoBehaviour
         Countdowns();
 
         healthBar.SetHealth(currentHealth);
-        
+
         //Checks if player has died
-        if(currentHealth == 0)
+        if (currentHealth == 0)
         {
-            StartCoroutine(Respawn());
+            Respawn();
         }
     }
 
     //Respawns player at set location and resets health to full
-    IEnumerator Respawn()
+    void Respawn()
     {
-        transform.position = respawnPoint.transform.position;
-        transform.rotation = Quaternion.identity;
+        cc.enabled = false;
 
-        yield return new WaitForSeconds(0.1f);
-
+        player.transform.rotation = Quaternion.Euler(new_rotation);
+        player.transform.position = new_transform;
         currentHealth = maxHealth;
+        cc.transform.position = new_transform;
+
+        cc.enabled = true;
     }
 
     //Attacking processes
@@ -84,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
         //If current game time is >= next available attack which is in this case current time + 1 second
         if (Time.time >= nextAttackTimeSword)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetMouseButtonDown(0))
             {
                 //Play attack animation
                 animator.SetTrigger("Attack");
@@ -102,7 +113,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextAttackTimeBomb)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetMouseButtonDown(1))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -121,7 +132,7 @@ public class PlayerCombat : MonoBehaviour
         //Current time   time until next attack (current time + delay)
         if (Time.time >= nextAttackTimeSpikes)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetMouseButtonDown(2))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -160,7 +171,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         //Sword text is empty if it is 0 or less
-        if(swordTime <= 0)
+        if (swordTime <= 0)
         {
             swordText.text = null;
         }
@@ -205,7 +216,7 @@ public class PlayerCombat : MonoBehaviour
         Collider[] hitEnemies = Physics.OverlapSphere(combatSphere.position, attackRange, enemyLayers);
 
         //Cause damage to the enemy
-        foreach(Collider enemy in hitEnemies)
+        foreach (Collider enemy in hitEnemies)
         {
             Debug.Log("Enemy hit" + enemy.name);
 
@@ -257,13 +268,13 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             Debug.Log("Enemy hit" + enemy.name);
-            
+
             //Damage the slime
             enemy.GetComponent<SlimeAI>().TakeDamage(attackDamage);
 
             //Applies ranged debuffs on damage
             enemy.GetComponent<SlimeAI>().StartRangedDebuffs(100f, instantiatedBomb.transform.position, bombAttackRange);
-            
+
             //Spawn hit effect on hit enemy position
             Instantiate(hitEffect, new Vector3(enemy.transform.position.x, enemy.transform.position.y - 0.5f, enemy.transform.position.z + -1f), Quaternion.identity);
         }
