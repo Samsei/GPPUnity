@@ -33,23 +33,23 @@ public class PlatformMovement : MonoBehaviour
         }
     }
 
-    //Parents the player to the platform on enter
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.transform.parent = gameObject.transform;
-            Debug.Log("Parented");
-        }
-    }
+    ////Parents the player to the platform on enter
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        other.transform.parent = gameObject.transform;
+    //        Debug.Log("Parented");
+    //    }
+    //}
 
-    //Unparents the player to the platform on enter
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.transform.parent = null;
-            Debug.Log("Un-parented");
-        }
-    }
+    ////Unparents the player to the platform on enter
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        other.transform.parent = null;
+    //        Debug.Log("Un-parented");
+    //    }
+    //}
 }
