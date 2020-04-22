@@ -17,6 +17,12 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTimeSpikes = 0f;
     public float power = 1000;
 
+    [Header("Respawn")]
+    GameObject player;
+    CharacterController cc;
+    public Vector3 new_transform;
+    public Vector3 new_rotation;
+
     [Header("Effects")]
     public ParticleSystem hitEffect;
     public PlayerHealthBar healthBar;
@@ -47,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
     //Spike text
     public Text spikeText;
     float spikeTime;
-    
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -59,9 +65,9 @@ public class PlayerCombat : MonoBehaviour
         Countdowns();
 
         healthBar.SetHealth(currentHealth);
-        
+
         //Checks if player has died
-        if(currentHealth == 0)
+        if (currentHealth == 0)
         {
             Respawn();
         }
@@ -70,7 +76,16 @@ public class PlayerCombat : MonoBehaviour
     //Respawns player at set location and resets health to full
     void Respawn()
     {
-        transform.position = respawnPoint.transform.position;
+        player = GameObject.Find("Playable_Character");
+        cc = player.GetComponent<CharacterController>();
+
+        cc.enabled = false;
+
+        player.transform.rotation = Quaternion.Euler(new_rotation);
+        player.transform.position = new_transform;
+
+        cc.enabled = true;
+
         currentHealth = maxHealth;
     }
 
@@ -80,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
         //If current game time is >= next available attack which is in this case current time + 1 second
         if (Time.time >= nextAttackTimeSword)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 //Play attack animation
                 animator.SetTrigger("Attack");
@@ -98,7 +113,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextAttackTimeBomb)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -117,7 +132,7 @@ public class PlayerCombat : MonoBehaviour
         //Current time   time until next attack (current time + delay)
         if (Time.time >= nextAttackTimeSpikes)
         {
-            if (Input.GetMouseButtonDown(2))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -156,7 +171,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         //Sword text is empty if it is 0 or less
-        if(swordTime <= 0)
+        if (swordTime <= 0)
         {
             swordText.text = null;
         }
@@ -176,21 +191,21 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator AttackStart()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         Attack();
     }
 
     public IEnumerator RangeAttackStart()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         RangeAttack();
     }
 
     public IEnumerator SpikeAttackStart()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         SpikeAttack();
     }
@@ -201,7 +216,7 @@ public class PlayerCombat : MonoBehaviour
         Collider[] hitEnemies = Physics.OverlapSphere(combatSphere.position, attackRange, enemyLayers);
 
         //Cause damage to the enemy
-        foreach(Collider enemy in hitEnemies)
+        foreach (Collider enemy in hitEnemies)
         {
             Debug.Log("Enemy hit" + enemy.name);
 
@@ -253,13 +268,13 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             Debug.Log("Enemy hit" + enemy.name);
-            
+
             //Damage the slime
             enemy.GetComponent<SlimeAI>().TakeDamage(attackDamage);
 
             //Applies ranged debuffs on damage
             enemy.GetComponent<SlimeAI>().StartRangedDebuffs(100f, instantiatedBomb.transform.position, bombAttackRange);
-            
+
             //Spawn hit effect on hit enemy position
             Instantiate(hitEffect, new Vector3(enemy.transform.position.x, enemy.transform.position.y - 0.5f, enemy.transform.position.z + -1f), Quaternion.identity);
         }
