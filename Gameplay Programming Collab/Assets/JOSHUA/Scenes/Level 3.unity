@@ -591,16 +591,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 839641694416020189, guid: 05c340d1445bf8a4c898253999737b16,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 839641694416020189, guid: 05c340d1445bf8a4c898253999737b16,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9198999287276764213, guid: 05c340d1445bf8a4c898253999737b16,
         type: 3}
       propertyPath: randZ1
@@ -610,6 +600,16 @@ PrefabInstance:
         type: 3}
       propertyPath: randZ2
       value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 839641694416020189, guid: 05c340d1445bf8a4c898253999737b16,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 839641694416020189, guid: 05c340d1445bf8a4c898253999737b16,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c340d1445bf8a4c898253999737b16, type: 3}
@@ -10148,6 +10148,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 825193752097154710, guid: 62a058ef13b00544cb637614198897d6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825193752091829026, guid: 62a058ef13b00544cb637614198897d6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825193752091829026, guid: 62a058ef13b00544cb637614198897d6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825193752091829026, guid: 62a058ef13b00544cb637614198897d6,
         type: 3}
       propertyPath: m_Center.y
       value: 1.2

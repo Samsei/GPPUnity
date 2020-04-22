@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,6 +57,8 @@ public class PlayerCombat : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        player = GameObject.Find("Playable_Character");
+        cc = player.GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -76,17 +78,14 @@ public class PlayerCombat : MonoBehaviour
     //Respawns player at set location and resets health to full
     void Respawn()
     {
-        player = GameObject.Find("Playable_Character");
-        cc = player.GetComponent<CharacterController>();
-
         cc.enabled = false;
 
         player.transform.rotation = Quaternion.Euler(new_rotation);
         player.transform.position = new_transform;
+        currentHealth = maxHealth;
+        cc.transform.position = new_transform;
 
         cc.enabled = true;
-
-        currentHealth = maxHealth;
     }
 
     //Attacking processes
