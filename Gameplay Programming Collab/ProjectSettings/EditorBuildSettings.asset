@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/JOSHUA/Scenes/Level 3.unity
     guid: a02865e7b4b96b544af357b64d56ef20
+  - enabled: 1
+    path: Assets/Scenes/Win Screen.unity
+    guid: e8fa437e57ea7b046843166eea9e8076
   m_configObjects: {}
