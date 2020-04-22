@@ -199,6 +199,10 @@ MonoBehaviour:
   toBeInstantiated: {fileID: 5881212602697235173, guid: 8aadbedb346822e44abfbc9f41705152,
     type: 3}
   healthBar: {fileID: 1060544591689161944}
+  randX1: 0
+  randX2: 0
+  randZ1: 0
+  randZ2: 0
 --- !u!1 &2442111171748149843
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacked: 0
   animator: {fileID: 0}
-  playerHitEffect: {fileID: 6765369310363706000, guid: c0ede33d6ea827741a6a0521d1560cfd,
+  playerHitEffect: {fileID: 8406405251282471070, guid: 15c9b0e7ba75c664e9ff9de00bdfca32,
     type: 3}
   attackRate: 1
 --- !u!1 &3009730133537505296

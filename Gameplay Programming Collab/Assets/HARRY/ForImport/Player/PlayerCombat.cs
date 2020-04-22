@@ -63,18 +63,14 @@ public class PlayerCombat : MonoBehaviour
         //Checks if player has died
         if(currentHealth == 0)
         {
-            StartCoroutine(Respawn());
+            Respawn();
         }
     }
 
     //Respawns player at set location and resets health to full
-    IEnumerator Respawn()
+    void Respawn()
     {
         transform.position = respawnPoint.transform.position;
-        transform.rotation = Quaternion.identity;
-
-        yield return new WaitForSeconds(0.1f);
-
         currentHealth = maxHealth;
     }
 
@@ -84,7 +80,7 @@ public class PlayerCombat : MonoBehaviour
         //If current game time is >= next available attack which is in this case current time + 1 second
         if (Time.time >= nextAttackTimeSword)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetMouseButtonDown(0))
             {
                 //Play attack animation
                 animator.SetTrigger("Attack");
@@ -102,7 +98,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextAttackTimeBomb)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetMouseButtonDown(1))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -121,7 +117,7 @@ public class PlayerCombat : MonoBehaviour
         //Current time   time until next attack (current time + delay)
         if (Time.time >= nextAttackTimeSpikes)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetMouseButtonDown(2))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -180,21 +176,21 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator AttackStart()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         Attack();
     }
 
     public IEnumerator RangeAttackStart()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         RangeAttack();
     }
 
     public IEnumerator SpikeAttackStart()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         SpikeAttack();
     }
