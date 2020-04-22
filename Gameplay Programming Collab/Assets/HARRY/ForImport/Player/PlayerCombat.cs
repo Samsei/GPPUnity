@@ -59,6 +59,7 @@ public class PlayerCombat : MonoBehaviour
         currentHealth = maxHealth;
         player = GameObject.Find("Playable_Character");
         cc = player.GetComponent<CharacterController>();
+        respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint").transform;
     }
 
     private void Update()

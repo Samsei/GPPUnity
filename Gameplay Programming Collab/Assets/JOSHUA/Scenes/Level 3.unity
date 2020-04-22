@@ -10046,7 +10046,7 @@ PrefabInstance:
         type: 3}
       propertyPath: respawnPoint
       value: 
-      objectReference: {fileID: 2136431799}
+      objectReference: {fileID: 0}
     - target: {fileID: 8347902687314341973, guid: 62a058ef13b00544cb637614198897d6,
         type: 3}
       propertyPath: bombLaunchForce
@@ -11282,8 +11282,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2136431799}
   m_Layer: 0
-  m_Name: Respawn Point Test
-  m_TagString: Untagged
+  m_Name: Respawn Point
+  m_TagString: RespawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
