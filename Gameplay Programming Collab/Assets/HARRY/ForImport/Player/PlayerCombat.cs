@@ -95,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
         //If current game time is >= next available attack which is in this case current time + 1 second
         if (Time.time >= nextAttackTimeSword)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetMouseButtonDown(0))
             {
                 //Play attack animation
                 animator.SetTrigger("Attack");
@@ -113,7 +113,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.time >= nextAttackTimeBomb)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetMouseButtonDown(1))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
@@ -132,7 +132,7 @@ public class PlayerCombat : MonoBehaviour
         //Current time   time until next attack (current time + delay)
         if (Time.time >= nextAttackTimeSpikes)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetMouseButtonDown(2))
             {
                 //Play range attack animation
                 animator.SetTrigger("RangeAttack");
