@@ -17,7 +17,7 @@ public class moveplat : MonoBehaviour
 
     public void Update()
     {
-        if (transform.position.z > t2.z || transform.position.z < t1.z)
+        if (transform.position.x < t2.x || transform.position.x > t1.x)
             Direction = Direction * -1;
 
         transform.Translate(Direction * movespeed * Time.deltaTime);

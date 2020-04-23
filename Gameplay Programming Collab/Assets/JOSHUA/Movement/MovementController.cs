@@ -303,32 +303,25 @@ public class MovementController : MonoBehaviour
     void PlatformMovement()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.4f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.4f) && hit.transform.tag == "Platform")
         {
-            if (hit.transform.tag == "Platform")
+            float momentum_x = 0.0f;
+            float momentum_z = 0.0f;
+
+            if (hit.transform.GetComponent<PlatformMovementBasic>() != null)
             {
-                float momentum_x = 0.0f;
-                float momentum_z = 0.0f;
-
-                if (hit.transform.GetComponent<PlatformMovementBasic>() != null)
-                {
-                    momentum_x = hit.transform.GetComponent<PlatformMovementBasic>().platform_dir.x * platform_amplify;
-                    momentum_z = hit.transform.GetComponent<PlatformMovementBasic>().platform_dir.z * platform_amplify;
-                }
-                else
-                {
-                    momentum_x = hit.transform.GetComponent<PlatformMovementButton>().platform_dir.x * platform_amplify;
-                    momentum_z = hit.transform.GetComponent<PlatformMovementButton>().platform_dir.z * platform_amplify;
-                }
-
-                velocity.x += momentum_x;
-                velocity.z += momentum_z;
-                transform.parent = hit.transform;
+                momentum_x = hit.transform.GetComponent<PlatformMovementBasic>().platform_dir.x * platform_amplify;
+                momentum_z = hit.transform.GetComponent<PlatformMovementBasic>().platform_dir.z * platform_amplify;
             }
             else
             {
-                transform.parent = null;
+                momentum_x = hit.transform.GetComponent<PlatformMovementButton>().platform_dir.x * platform_amplify;
+                momentum_z = hit.transform.GetComponent<PlatformMovementButton>().platform_dir.z * platform_amplify;
             }
+
+            velocity.x += momentum_x;
+            velocity.z += momentum_z;
+            transform.parent = hit.transform;
         }
         else
         {
