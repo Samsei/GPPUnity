@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - Enemy
   - RespawnPoint
+  - Hammer
+  - platform2
   layers:
   - Default
   - TransparentFX
