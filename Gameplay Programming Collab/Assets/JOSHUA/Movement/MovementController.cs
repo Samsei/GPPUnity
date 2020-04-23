@@ -165,25 +165,23 @@ public class MovementController : MonoBehaviour
         velocity.y = Mathf.Clamp(velocity.y, -50, 50);
     }
 
-    void CanJump()
+   /* void CanJump()
     {
-        if (GetGround())
-        {
-            Jump();
-        }
-        else if (at.char_status == Status.double_jump)
+        Jump();
+        if (at.char_status == Status.double_jump)
         {
             if (jump_count < 2)
             {
                 Jump();
             }
         }
-    }
+    }*/
 
     void Jump()
     {
-        if (has_jumped)
+        if (input.Jump && GetGround())
         {
+            Debug.Log("test");
             velocity.y = Mathf.Sqrt(jump_height * -2.0f * gravity);
             anim.SetTrigger("JumpTrigger");
             if (jump_count == 1)
@@ -206,8 +204,9 @@ public class MovementController : MonoBehaviour
             {
                 if (!CanRoll())
                 {
+                    Jump();
+
                     NormalMovement();
-                    CanJump();
                 }
                 cc.Move(velocity * Time.deltaTime);
             }
@@ -450,17 +449,13 @@ public class MovementController : MonoBehaviour
     {
         if (cc.isGrounded)
         {
+            Debug.Log("true");
             jump_count = 0;
             anim.SetInteger("Jumping", 0);
             return true;
         }
         else
         {
-            if (jump_count == 0 && !has_rolled)
-            {
-                anim.SetTrigger("JumpTrigger");
-                anim.SetInteger("Jumping", 2);
-            }
             return false;
         }
     }
