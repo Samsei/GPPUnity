@@ -1820,7 +1820,7 @@ GameObject:
   - component: {fileID: 1721618318}
   - component: {fileID: 1721618317}
   m_Layer: 0
-  m_Name: Cube (7)
+  m_Name: Finish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2298,6 +2298,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 3508898017696079124, guid: d08df686bdec260489a6e6cdeef16b79,
+        type: 3}
+      propertyPath: cam_follow_object
+      value: 
+      objectReference: {fileID: 1012140928}
+    - target: {fileID: 3508898017696079124, guid: d08df686bdec260489a6e6cdeef16b79,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1054435013}
+    - target: {fileID: 4082054666768325538, guid: d08df686bdec260489a6e6cdeef16b79,
+        type: 3}
+      propertyPath: cam_follow_object
+      value: 
+      objectReference: {fileID: 1012140928}
     - target: {fileID: 2363445336676165434, guid: d08df686bdec260489a6e6cdeef16b79,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2363,21 +2378,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4082054666768325538, guid: d08df686bdec260489a6e6cdeef16b79,
-        type: 3}
-      propertyPath: cam_follow_object
-      value: 
-      objectReference: {fileID: 1012140928}
-    - target: {fileID: 3508898017696079124, guid: d08df686bdec260489a6e6cdeef16b79,
-        type: 3}
-      propertyPath: cam_follow_object
-      value: 
-      objectReference: {fileID: 1012140928}
-    - target: {fileID: 3508898017696079124, guid: d08df686bdec260489a6e6cdeef16b79,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1054435013}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08df686bdec260489a6e6cdeef16b79, type: 3}
 --- !u!1 &2126105844
