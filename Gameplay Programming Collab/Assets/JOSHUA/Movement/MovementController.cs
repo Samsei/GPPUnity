@@ -114,9 +114,11 @@ public class MovementController : MonoBehaviour
         {
             has_jumped = true;
         }
-        else
+
+        if (Input.GetButtonUp("Jump"))
         {
             has_jumped = false;
+
         }
 
         if (input.Roll)
